@@ -1,17 +1,14 @@
 class UserModel {
-  int? userId;
-  int? id;
-  String? title;
-  String? body;
+  int userId;
+  int id;
+  String title;
+  String body;
 
-  UserModel({this.userId, this.id, this.title, this.body});
-
-  UserModel.fromJson(Map<String, dynamic> json) {
-    userId = json['userId'];
-    id = json['id'];
-    title = json['title'];
-    body = json['body'];
-  }
+  UserModel(
+      {required this.userId,
+      required this.id,
+      required this.title,
+      required this.body});
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
