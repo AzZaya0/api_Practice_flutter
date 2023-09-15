@@ -9,7 +9,7 @@ class PostService {
     final response = await http.get(Uri.parse(uri));
     if (response.statusCode == 200) {
       final json = jsonDecode(response.body) as List;
-      final post = json.map((e) {
+      final post = json.map((e) { 
         return UserModel(
           id: e['id'],
           body: e['body'],

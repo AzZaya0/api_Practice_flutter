@@ -27,13 +27,17 @@ class _HomePageState extends State<HomePage> {
           builder: (context, value, child) {
             //
             final data = value.posts;
-            print(data);
+
             return ListView.builder(
               itemCount: data.length,
               itemBuilder: (BuildContext context, int index) {
                 final post = data[index];
-                return Container(
-                  child: Text(post.title.toString()),
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    color: Colors.grey,
+                    child: Text(post.title.toString()),
+                  ),
                 );
               },
             );
