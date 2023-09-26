@@ -3,7 +3,7 @@ import 'package:api_practice/models/UserModels.dart';
 import 'package:http/http.dart' as http;
 
 class PostService {
-  final String uri = 'https://jsonplaceholder.typicode.com/comments/1';
+  final String uri = 'https://jsonplaceholder.typicode.com/posts';
 
   Future getAll() async {
     List<UserModel> datas = [];
