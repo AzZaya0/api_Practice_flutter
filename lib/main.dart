@@ -1,5 +1,5 @@
 import 'package:api_practice/providers/postProvider.dart';
-import 'package:api_practice/screens/myapp.dart';
+import 'package:api_practice/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,7 +15,7 @@ class Myapp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (_) => PostProvider(),
       child: MaterialApp(
-        home: MyApp(),
+        home: Home(),
       ),
     );
   }

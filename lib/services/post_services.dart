@@ -3,24 +3,28 @@ import 'package:api_practice/models/UserModels.dart';
 import 'package:http/http.dart' as http;
 
 class PostService {
-  final String uri = 'https://cat-fact.herokuapp.com/facts/';
+  final String uri = 'https://jsonplaceholder.typicode.com/comments/1';
 
-  Future<UserModel> getAll() async {
-    late UserModel data;
+  Future getAll() async {
+    List<UserModel> datas = [];
     try {
       final response = await http.get(
-        Uri.parse('https://jsonplaceholder.typicode.com/comments/1'),
+        Uri.parse(uri),
       );
       if (response.statusCode == 200) {
         final item = json.decode(response.body);
-        data =
-            UserModel.fromJson(item); // Mapping json response to our data model
+        //
+        for (Map<String, dynamic> index in item) {
+          datas.add(UserModel.fromJson(index));
+        }
+        return datas;
+
+        // Mapping json response to our data model
       } else {
         print('Error Occurred');
       }
     } catch (e) {
       print('Error Occurred' + e.toString());
     }
-    return data;
   }
 }
