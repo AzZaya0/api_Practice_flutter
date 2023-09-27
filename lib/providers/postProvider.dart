@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 class PostProvider with ChangeNotifier {
   List<UserModel>? data;
+
   PostService services = PostService();
 
   getPostData(context) async {

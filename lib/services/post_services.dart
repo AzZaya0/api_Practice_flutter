@@ -3,7 +3,7 @@ import 'package:api_practice/models/UserModels.dart';
 import 'package:http/http.dart' as http;
 
 class PostService {
-  final String uri = 'https://jsonplaceholder.typicode.com/posts';
+  final String uri = 'http://10.0.2.2:8000/api/postdata';
 
   Future getAll() async {
     List<UserModel> datas = [];
@@ -14,7 +14,7 @@ class PostService {
       if (response.statusCode == 200) {
         final item = json.decode(response.body);
         //
-        for (Map<String, dynamic> index in item) {
+        for (Map<String, dynamic> index in item['data']) {
           datas.add(UserModel.fromJson(index));
         }
         return datas;

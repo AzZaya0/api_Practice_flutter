@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:api_practice/providers/postProvider.dart';
 import 'package:api_practice/services/post_services.dart';
 import 'package:flutter/material.dart';
@@ -22,9 +24,13 @@ class _HomeState extends State<Home> {
     PostProvider provider = Provider.of<PostProvider>(context);
     return Scaffold(
       body: FutureBuilder(
-        future: provider.getPostData(context),
+        future: PostService().getAll(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (snapshot.hasData) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+              child: Text("loading.."),
+            );
+          } else if (snapshot.connectionState == ConnectionState.done) {
             return Center(
               // Added 'return' here
               child: Container(
