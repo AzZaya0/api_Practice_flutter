@@ -1,27 +1,27 @@
 class UserModel2 {
-  List<Data>? data;
+  List<Message>? message;
 
-  UserModel2({this.data});
+  UserModel2({this.message});
 
   UserModel2.fromJson(Map<String, dynamic> json) {
-    if (json['data'] != null) {
-      data = <Data>[];
-      json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+    if (json['message'] != null) {
+      message = <Message>[];
+      json['message'].forEach((v) {
+        message!.add(new Message.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.data != null) {
-      data['data'] = this.data!.map((v) => v.toJson()).toList();
+    if (this.message != null) {
+      data['message'] = this.message!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
-class Data {
+class Message {
   int? id;
   String? userId;
   String? title;
@@ -30,7 +30,7 @@ class Data {
   String? createdAt;
   String? updatedAt;
 
-  Data(
+  Message(
       {this.id,
       this.userId,
       this.title,
@@ -39,7 +39,7 @@ class Data {
       this.createdAt,
       this.updatedAt});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  Message.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     userId = json['userId'];
     title = json['title'];

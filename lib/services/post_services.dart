@@ -27,4 +27,6 @@ class PostService {
       print('Error Occurred' + e.toString());
     }
   }
+
+  Future sendData() async {}
 }

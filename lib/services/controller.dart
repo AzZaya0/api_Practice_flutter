@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'package:api_practice/models/UserModel2.dart';
+import 'package:api_practice/models/UserModels.dart';
+import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 
 class UserController {
@@ -17,14 +19,44 @@ class UserController {
     }
   }
 
-  Future<Data> fetchDataById(int id) async {
-    final response = await http.get(Uri.parse('$baseUrl/$id'));
+  Future<void> sendData(userId, title, body) async {
+    try {
+      title = null;
+      Message message = Message(
+        userId: '10',
+        title: title,
+        body: 'Sample Body',
+      );
+      Map<String, dynamic> messageJson = message.toJson();
+      UserModel2 userdata = new UserModel2();
+      final requestBody = json.encode(messageJson);
+      print(requestBody + 'hello');
 
-    if (response.statusCode == 200) {
-      final Map<String, dynamic> responseData = json.decode(response.body);
-      return Data.fromJson(responseData);
-    } else {
-      throw Exception('Failed to load data by id');
+      final response = await Dio().post(
+        baseUrl,
+        data: requestBody,
+        options: Options(
+          headers: {'Content-Type': 'application/json'},
+          followRedirects: false, // Disable automatic redirection
+        ),
+      );
+      print(response.statusCode);
+
+      if (response.statusCode == 200) {
+        // Request was successful
+        print('Data posted successfully');
+      } else if (response.statusCode == 400) {
+        // Handle the specific error response
+        final Map<String, dynamic> errorResponse =
+            json.decode(response.toString());
+        print('Error Message: ${errorResponse['message']}');
+        print('Errors: ${errorResponse['errors']}');
+      } else {
+        // Handle other error cases
+        print('Failed to post data. Status code: ${response.statusCode}');
+      }
+    } catch (e) {
+      print(e);
     }
   }
 }
