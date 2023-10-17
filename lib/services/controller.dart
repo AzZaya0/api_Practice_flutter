@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:api_practice/models/UserModel2.dart';
-import 'package:api_practice/models/UserModels.dart';
 import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 
@@ -21,7 +20,6 @@ class UserController {
 
   Future<void> sendData(userId, title, body) async {
     try {
-      title = null;
       Message message = Message(
         userId: '10',
         title: title,
