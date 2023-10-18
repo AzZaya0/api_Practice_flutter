@@ -40,6 +40,7 @@ dependencies:
   dio: ^5.3.3
   shared_preferences: ^2.2.1
   get: ^4.6.6
+  cached_network_image: ^3.3.0
 
 dev_dependencies:
   flutter_test:

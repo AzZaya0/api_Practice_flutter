@@ -20,6 +20,7 @@ class Myapp extends StatelessWidget {
       create: (_) => PostProvider(),
       child: GetMaterialApp(
         home: NewsGui(),
+        debugShowCheckedModeBanner: false,
       ),
     );
   }

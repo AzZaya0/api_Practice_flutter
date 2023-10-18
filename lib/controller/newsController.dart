@@ -12,6 +12,7 @@ class NewsController extends GetxController {
   }
 
   var loading = true.obs;
+  List<Article> get articles => newsData.value.articles;
   final newsData = NewsModel(status: '', totalResults: 0, articles: []).obs;
   void getNews() async {
     var apiData = await GetNewsApi().getNewsFromApi();
